@@ -11,7 +11,10 @@ class UserController{
 
         const userExists = await repository.findOne( { where: { Email } } );
         if(userExists){
-            return res.sendStatus(409);
+          return res.status(409).send({
+            Success: false,
+            Message: "Já existe um usuário com este email"               
+          });
         }
         const user = repository.create({Id, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId, Name});
         await repository.save(user);
@@ -59,7 +62,7 @@ class UserController{
               });
         }
        
-        const token = jwt.sign({Id: user.Id}, 'secrete', {expiresIn:'1d'});
+        const token = jwt.sign({Id: user.Id}, 'secret', {expiresIn:'1d'});
         
       return res.status(201).send({
         Success: true,
