@@ -20,5 +20,9 @@ router.post('/HeadOffice/Create', authMiddleware, HeadOfficeController.store)
 
 router.get('/HeadOffice/List', authMiddleware, HeadOfficeController.index)
 
+router.put('/HeadOffice/:Id/Update', authMiddleware, HeadOfficeController.update)
+
+router.delete('/HeadOffice/:Id/Remove', authMiddleware, HeadOfficeController.remove)
+
 
 export default router; 
