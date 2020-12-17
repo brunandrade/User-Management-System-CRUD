@@ -10,6 +10,12 @@ export class CreateTableUser1608140341059 implements MigrationInterface {
                     name:'Id',
                     type: "int",
                     isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: 'increment',
+                },
+                {
+                    name:'Name',
+                    type: "varchar",                              
                 },
                 {
                     name:'Phone',

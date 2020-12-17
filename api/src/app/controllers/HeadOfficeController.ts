@@ -23,8 +23,7 @@ class HeadOfficeController{
         Success: true,
         Message: "HeadOffice criado com sucesso!",
         headOffice: headOffice
-      });
-      
+      });      
     }
 }
 

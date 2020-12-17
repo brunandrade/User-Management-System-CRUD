@@ -4,7 +4,7 @@
     "port": 3306,
     "username": "root",
     "password": "password",
-    "database": "cruddb",
+    "database": "db_crud",
     "entities": [
        "src/app/models/*.ts"
     ],

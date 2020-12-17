@@ -8,7 +8,7 @@ import bcrypt from 'bcryptjs';
 @Entity('User')
 class User {
 
-    @PrimaryGeneratedColumn('increment')   
+    @PrimaryGeneratedColumn()   
     Id: number;
 
     @Column()

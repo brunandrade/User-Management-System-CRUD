@@ -8,6 +8,7 @@ class Role {
 
     @Column()
     Name: string;
+    
     @Column()
     Description: string;
 }

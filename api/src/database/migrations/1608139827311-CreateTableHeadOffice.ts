@@ -9,7 +9,9 @@ export class CreateTableHeadOffice1608139827311 implements MigrationInterface {
                 {
                     name:'Id',
                     type: "int",
-                    isPrimary: true
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: 'increment',
                 },
                 {
                     name:'Name',

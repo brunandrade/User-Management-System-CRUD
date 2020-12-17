@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 class UserController{
     async store(req : Request, res: Response){
         const repository = getRepository(User);
-        const {Id, Name, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId} = req.body;
+        const {Name, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId} = req.body;
 
         const userExists = await repository.findOne( { where: { Email } } );
         if(userExists){
@@ -16,7 +16,7 @@ class UserController{
             Message: "Já existe um usuário com este email"               
           });
         }
-        const user = repository.create({Id, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId, Name});
+        const user = repository.create({Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId, Name});
         await repository.save(user);
 
         
