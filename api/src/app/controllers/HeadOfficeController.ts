@@ -25,6 +25,20 @@ class HeadOfficeController{
         headOffice: headOffice
       });      
     }
+
+    async index(req : Request, res: Response){
+      const repository = getRepository(HeadOffice);
+      const headOfficers = await repository.find()
+
+      if(!headOfficers){
+          return res.status(404).send({
+              Success: false,
+              Message: "Nenhum HeadOffice encontrado"               
+            });
+      }
+
+      return res.status(201).json(headOfficers);
+  }
 }
 
 export default new HeadOfficeController();

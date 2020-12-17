@@ -9,14 +9,21 @@ class UserController{
         const repository = getRepository(User);
         const {Name, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId} = req.body;
 
-        const userExists = await repository.findOne( { where: { Email } } );
-        if(userExists){
+        const userEmail = await repository.findOne( { where: { Email } } );    
+        const userPhone = await repository.findOne( { where: { Phone } } );    
+        if(userEmail){
           return res.status(409).send({
             Success: false,
             Message: "Já existe um usuário com este email"               
           });
+        }       
+        else if(userPhone){
+          return res.status(409).send({
+            Success: false,
+            Message: "Já existe um usuário com este telefone"               
+          });
         }
-        const user = repository.create({Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId, Name});
+        const user = repository.create({Name, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId});
         await repository.save(user);
 
         
@@ -71,6 +78,70 @@ class UserController{
       });
       
     }
+
+    async update(req : Request, res: Response){
+      const repository = getRepository(User);
+      const {Id} = req.params;
+      const {Phone, Email} = req.body
+      const user = await repository.findOne( Id );
+
+      if(!user){
+        return res.status(404).send({
+          Success: false,
+          Message: "Usuário não encontrado!"               
+        });
+      }
+
+      if(Phone != null && Phone != user.Phone){
+        const userPhone = await repository.findOne( { where: { Phone } } );   
+        if(userPhone){
+            return res.status(409).send({
+              Success: false,
+              Message: "Já existe um usuário com este telefone"               
+            });
+          }
+      }
+     
+      if(Email != null && Email != user.Email){
+        const userEmail = await repository.findOne( { where: { Email } } );    
+        if(userEmail){
+          return res.status(409).send({
+            Success: false,
+            Message: "Já existe um usuário com este email"               
+          });
+        }   
+      }   
+
+      const userResult = repository.merge(user, req.body);
+      await repository.save(userResult);
+      
+    return res.status(201).send({
+      Success: true,
+      Message: "Usuário Atualizado com sucesso!",
+      user: userResult
+    });
+  }
+
+  async remove(req : Request, res: Response){
+    const repository = getRepository(User);
+    const {Id} = req.params;
+    
+    const user = await repository.findOne( Id );
+
+    if(!user){
+      return res.status(404).send({
+        Success: false,
+        Message: "Usuário não encontrado!"               
+      });
+    }
+
+    await repository.remove(user);
+
+      return res.status(201).send({
+      Success: true,
+      Message: "Usuário Removido com sucesso!",    
+    });
+  }
 }
 
 export default new UserController();

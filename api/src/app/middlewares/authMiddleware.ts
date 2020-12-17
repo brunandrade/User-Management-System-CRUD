@@ -11,7 +11,7 @@ export default function authMiddleware(req : Request, res: Response, next: NextF
 
     //const { authorization } = req.headers;
     const authHeader = req.headers.authorization;
-    console.log(authHeader);
+    //console.log(authHeader);
     
     if(!authHeader){
         return res.sendStatus(401);
@@ -22,7 +22,7 @@ export default function authMiddleware(req : Request, res: Response, next: NextF
 
     try {
         const data = jwt.verify(token, 'secret');
-        console.log(data);
+        //console.log(data);
         const {id} = data as TokenPayload;
         req.userId = id;
         return next();
