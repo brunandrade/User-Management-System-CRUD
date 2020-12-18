@@ -10,7 +10,8 @@ class UserController{
         const {Name, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId} = req.body;
 
         const userEmail = await repository.findOne( { where: { Email } } );    
-        const userPhone = await repository.findOne( { where: { Phone } } );    
+        const userPhone = await repository.findOne( { where: { Phone } } ); 
+           
         if(userEmail){
           return res.status(409).send({
             Success: false,

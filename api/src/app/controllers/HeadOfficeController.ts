@@ -89,15 +89,16 @@ class HeadOfficeController{
     }
 
     const query = await repository.manager.query(`SELECT Id, Name FROM User WHERE HeadOfficeId = ${Id}`);
-    console.log(query);
-
-    if(query != null || query != []){
-      return res.status(400).send({
-        Success: false,
-        Message: "HeadOffice esta sendo utilizado por usuários."               
-      });
-    }
-
+    query.map(function(num: any) {
+      console.log("teste");
+      console.log(num)
+      if(num != null || num != []){
+        return res.status(400).send({
+          Success: false,
+          Message: "HeadOffice esta sendo utilizado por usuários."               
+        });
+      }
+    });
     await repository.remove(headOffice);
 
     return res.status(201).send({
