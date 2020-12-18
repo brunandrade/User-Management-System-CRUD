@@ -60,18 +60,33 @@ class UserController{
       
     }
 
-    async index(req : Request, res: Response){
-        const repository = getRepository(User);
-        const users = await repository.find()
+    async index(req: Request, res: Response){
+        const repository = getRepository(User);     
 
-        if(!users){
-            return res.status(404).send({
-                Success: false,
-                Message: "Nenhum usuário encontrado"               
-              });
+        if(req.query === null || req.query === undefined){
+          const users = await repository.find();   
+          if(users.length == 0){
+            return res.status(400).send({
+              Success: false,
+              Message: "Nenhum usuário encontrado"               
+            });
+          }
+          else{
+            return res.status(201).json(users); 
+          }
         }
-
-        return res.status(201).json(users);
+        else {
+          const usersFilter = await repository.find({ where: req.query} );
+          if(usersFilter.length  == 0){
+            return res.status(400).send({
+              Success: false,
+              Message: "Nenhum usuário encontrado"               
+            });
+          }
+          else{
+            return res.status(201).json(usersFilter);
+          }          
+        }     
     }
 
     async login(req : Request, res: Response){
@@ -88,7 +103,7 @@ class UserController{
 
         const isValidPassword = await bcrypt.compare(Password, user.Password);
         if(!isValidPassword){
-            return res.status(401).send({
+            return res.status(400).send({
                 Success: false,
                 Message: "Senha Incorreta"               
               });
@@ -111,7 +126,7 @@ class UserController{
       const user = await repository.findOne( Id );
 
       if(!user){
-        return res.status(404).send({
+        return res.status(400).send({
           Success: false,
           Message: "Usuário não encontrado!"               
         });
@@ -154,7 +169,7 @@ class UserController{
     const user = await repository.findOne( Id );
 
     if(!user){
-      return res.status(404).send({
+      return res.status(400).send({
         Success: false,
         Message: "Usuário não encontrado!"               
       });
@@ -167,6 +182,23 @@ class UserController{
       Message: "Usuário Removido com sucesso!",    
     });
   }
+
+  async detail(req: Request, res: Response){
+    const repository = getRepository(User); 
+    const {Id} = req.params;    
+    const user = await repository.findOne( { where: { Id } } );  
+
+    if(user == null){
+        return res.status(400).send({
+          Success: false,
+          Message: "Usuário não encontrado."               
+        });
+    }
+    else{
+        return res.status(201).json(user); 
+    }
+  }
+          
 }
 
 export default new UserController();

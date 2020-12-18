@@ -41,18 +41,33 @@ class HeadOfficeController{
       });      
     }
 
-    async index(req : Request, res: Response){
+  async index(req : Request, res: Response){
       const repository = getRepository(HeadOffice);
-      const headOfficers = await repository.find()
-
-      if(!headOfficers){
-          return res.status(404).send({
-              Success: false,
-              Message: "Nenhum HeadOffice encontrado"               
-            });
+      
+      if(req.query === null || req.query === undefined){
+        const headOfficers = await repository.find();   
+        if(headOfficers.length == 0){
+          return res.status(400).send({
+            Success: false,
+            Message: "Nenhum HeadOffice encontrado"               
+          });
+        }
+        else{
+          return res.status(201).json(headOfficers); 
+        }
       }
-
-      return res.status(201).json(headOfficers);
+      else {
+        const headOfficersFilter = await repository.find({ where: req.query} );
+        if(headOfficersFilter.length  == 0){
+          return res.status(400).send({
+            Success: false,
+            Message: "Nenhum HeadOffice encontrado"               
+          });
+        }
+        else{
+          return res.status(201).json(headOfficersFilter);
+        }          
+      }   
   }
 
   async update(req : Request, res: Response){
@@ -112,8 +127,7 @@ class HeadOfficeController{
 
     const query = await repository.manager.query(`SELECT Id, Name FROM User WHERE HeadOfficeId = ${Id}`);
     query.map(function(num: any) {
-      console.log("teste");
-      console.log(num)
+
       if(num != null || num != []){
         return res.status(400).send({
           Success: false,
@@ -127,6 +141,22 @@ class HeadOfficeController{
       Success: true,
       Message: "HeadOffice Removido com sucesso!",    
     });
+  }
+
+  async detail(req: Request, res: Response){
+    const repository = getRepository(HeadOffice); 
+    const {Id} = req.params;    
+    const headOffice = await repository.findOne( { where: { Id } } );  
+
+    if(headOffice == null){
+        return res.status(400).send({
+          Success: false,
+          Message: "HeadOffice não encontrado."               
+        });
+    }
+    else{
+        return res.status(201).json(headOffice); 
+    }
   }
 
 }
