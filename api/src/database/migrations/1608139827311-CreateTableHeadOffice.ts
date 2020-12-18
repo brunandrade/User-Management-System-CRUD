@@ -22,6 +22,11 @@ export class CreateTableHeadOffice1608139827311 implements MigrationInterface {
                     type: "varchar",                  
                 },
                 {
+                    name:'CNPJ',
+                    type: "varchar", 
+                    isUnique: true                   
+                },
+                {
                     name:'City',
                     type: "varchar",                  
                 },

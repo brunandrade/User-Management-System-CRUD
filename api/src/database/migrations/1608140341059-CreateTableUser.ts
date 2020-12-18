@@ -18,6 +18,11 @@ export class CreateTableUser1608140341059 implements MigrationInterface {
                     type: "varchar",                              
                 },
                 {
+                    name:'CPF',
+                    type: "varchar", 
+                    isUnique: true                   
+                },
+                {
                     name:'Phone',
                     type: "varchar",    
                     isUnique: true            

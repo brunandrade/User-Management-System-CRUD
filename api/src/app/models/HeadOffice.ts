@@ -13,6 +13,9 @@ class HeadOffice {
     Description: string;
 
     @Column()
+    CNPJ: string;
+
+    @Column()
     City: string;
 
     @Column()
