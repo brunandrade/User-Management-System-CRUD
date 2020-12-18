@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { cpf } from 'cpf-cnpj-validator'; 
 import * as EmailValidator from 'email-validator';
+import {SendEmail} from '../services/EmailService'
 
 class UserController{
     async store(req : Request, res: Response){
@@ -45,9 +46,11 @@ class UserController{
             Message: "Email Inválido."               
           });
         }
-        
+
         const user = repository.create({Name,CPF, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId});
         await repository.save(user);
+
+        SendEmail(Email);
         
       return res.status(201).send({
         Success: true,
