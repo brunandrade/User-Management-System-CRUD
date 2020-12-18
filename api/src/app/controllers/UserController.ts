@@ -3,14 +3,17 @@ import { getRepository } from 'typeorm';
 import User from '../models/User'
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { cpf } from 'cpf-cnpj-validator'; 
+import * as EmailValidator from 'email-validator';
 
 class UserController{
     async store(req : Request, res: Response){
         const repository = getRepository(User);
-        const {Name, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId} = req.body;
+        const {Name, CPF ,Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId} = req.body;
 
         const userEmail = await repository.findOne( { where: { Email } } );    
         const userPhone = await repository.findOne( { where: { Phone } } ); 
+        const userCPF = await repository.findOne( { where: { CPF } } ); 
            
         if(userEmail){
           return res.status(409).send({
@@ -24,9 +27,27 @@ class UserController{
             Message: "Já existe um usuário com este telefone"               
           });
         }
-        const user = repository.create({Name, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId});
+        else if(userCPF){
+          return res.status(409).send({
+            Success: false,
+            Message: "Já existe um usuário com este CPF"               
+          });
+        }
+        else if(!cpf.isValid(CPF)){
+          return res.status(400).send({
+            Success: false,
+            Message: "CPF Inválido."               
+          });
+        }
+        else if(!EmailValidator.validate(Email)){
+          return res.status(400).send({
+            Success: false,
+            Message: "Email Inválido."               
+          });
+        }
+        
+        const user = repository.create({Name,CPF, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId});
         await repository.save(user);
-
         
       return res.status(201).send({
         Success: true,

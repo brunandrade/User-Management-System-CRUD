@@ -1,24 +1,38 @@
 import {Request, Response} from 'express'
-import { getRepository, getManager, getConnection } from 'typeorm';
+import { getRepository } from 'typeorm';
 import HeadOffice from '../models/HeadOffice'
-import User from '../models/User'
+import { cnpj } from 'cpf-cnpj-validator'; 
 
 
 class HeadOfficeController{
     async store(req : Request, res: Response){
         const repository = getRepository(HeadOffice);
-        const {Id, Name, Description , City, CityId, State,  StateId} = req.body;
+        const {Id, Name, Description, CNPJ, City, CityId, State,  StateId} = req.body;
 
-        const headOfficeExists = await repository.findOne( { where: { Name } } );
-        if(headOfficeExists){
+        const headOfficeName = await repository.findOne( { where: { Name } } );
+        const headOfficeCNPJ = await repository.findOne( { where: { CNPJ } } );
+
+        if(headOfficeName){
             return res.status(409).send({
                 Success: false,
                 Message: "Já existe um HeadOffice com este nome"               
               });
         }
-        const headOffice = repository.create({Id, Name, Description ,City, CityId, State,  StateId});
-        await repository.save(headOffice);
+        else if(headOfficeCNPJ){
+          return res.status(409).send({
+              Success: false,
+              Message: "Já existe um HeadOffice com este nome"               
+            });
+        }
+        else if(!cnpj.isValid(CNPJ)){
+          return res.status(400).send({
+            Success: false,
+            Message: "CNPJ Inválido."               
+          });
+        }
 
+        const headOffice = repository.create({Id, Name, Description, CNPJ, City, CityId, State,  StateId});
+        await repository.save(headOffice);
         
       return res.status(201).send({
         Success: true,
@@ -44,7 +58,7 @@ class HeadOfficeController{
   async update(req : Request, res: Response){
     const repository = getRepository(HeadOffice);
     const {Id} = req.params;
-    const {Name} = req.body
+    const {Name, CNPJ} = req.body
     const headOffice = await repository.findOne( Id );
 
     if(!headOffice){
@@ -54,13 +68,21 @@ class HeadOfficeController{
       });
     }
 
-    if(Name != null && Name != headOffice.Name){
+    if((Name != null && Name != headOffice.Name) && (CNPJ != null && CNPJ != headOffice.CNPJ)){
       const headOfficeName = await repository.findOne( { where: { Name } } );   
+      const headOfficeCNPJ = await repository.findOne( { where: { CNPJ } } );
+
       if(headOfficeName){
           return res.status(409).send({
             Success: false,
             Message: "Já existe um HeadOffice com este nome"               
           });
+        }
+        else if(headOfficeCNPJ){
+          return res.status(409).send({
+              Success: false,
+              Message: "Já existe um HeadOffice com este CNPJ"               
+            });
         }
     }
      
