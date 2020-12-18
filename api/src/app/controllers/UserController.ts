@@ -214,12 +214,12 @@ class UserController{
     const userResult = repository.merge(user, {Password});
     await repository.save(userResult);
     
-  return res.status(201).send({
-    Success: true,
-    Message: "Senha atualizada com sucesso!",
-    user: userResult
-  });
-}
+    return res.status(201).send({
+      Success: true,
+      Message: "Senha atualizada com sucesso!",
+      user: userResult
+    });
+  }
 }
 
 export default new UserController();
