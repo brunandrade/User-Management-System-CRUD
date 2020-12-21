@@ -1,7 +1,7 @@
 import {Request, Response} from 'express'
 import { getRepository } from 'typeorm';
 import HeadOffice from '../models/HeadOffice'
-import { cnpj } from 'cpf-cnpj-validator'; 
+import {isValidCNPJ} from '../services/Validator'
 
 
 class HeadOfficeController{
@@ -24,7 +24,7 @@ class HeadOfficeController{
               Message: "Já existe um HeadOffice com este nome"               
             });
         }
-        else if(!cnpj.isValid(CNPJ)){
+        else if(!isValidCNPJ(CNPJ)){
           return res.status(400).send({
             Success: false,
             Message: "CNPJ Inválido."               

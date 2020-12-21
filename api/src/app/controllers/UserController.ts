@@ -3,9 +3,9 @@ import { getRepository } from 'typeorm';
 import User from '../models/User'
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { cpf } from 'cpf-cnpj-validator'; 
-import * as EmailValidator from 'email-validator';
-import {SendEmail} from '../services/EmailService'
+import {isValidCPF, isValidEmail} from '../services/Validator'
+
+import {SendConfirmEmail, SendResendEmail} from '../services/EmailService'
 
 class UserController{
     async store(req : Request, res: Response){
@@ -34,13 +34,13 @@ class UserController{
             Message: "Já existe um usuário com este CPF"               
           });
         }
-        else if(!cpf.isValid(CPF)){
+        else if(!isValidCPF(CPF)){
           return res.status(400).send({
             Success: false,
             Message: "CPF Inválido."               
           });
         }
-        else if(!EmailValidator.validate(Email)){
+        else if(!isValidEmail(Email)){
           return res.status(400).send({
             Success: false,
             Message: "Email Inválido."               
@@ -50,7 +50,7 @@ class UserController{
         const user = repository.create({Name,CPF, Phone,Email,City, CityId, State,  StateId, Password, HeadOfficeId, ProfileId, RoleId});
         await repository.save(user);
 
-        SendEmail(Email);
+        SendConfirmEmail(Email);
         
       return res.status(201).send({
         Success: true,
@@ -213,6 +213,7 @@ class UserController{
 
     const userResult = repository.merge(user, {Password});
     await repository.save(userResult);
+    SendResendEmail(Email);
     
     return res.status(201).send({
       Success: true,
