@@ -2,8 +2,9 @@ import React from 'react';
 import NavBar from '../../../components/NavBar'
 import Label from '../../../components/Label'
 import Input from '../../../components/InputWhite'
-import Button from '../../../components/LargeButton'
-import {Container, Filter, FilterContainer, FilterBox, Content, ContentHeader, ContentTitle} from './styles'
+import LargeButton from '../../../components/LargeButton'
+import Button from '../../../components/Button'
+import {Container, Filter, FilterContainer, FilterBox, Content, ContentHeader, ContentTitle, ContentResult, Result} from './styles'
 
 export default function UserList(){
     
@@ -59,7 +60,7 @@ export default function UserList(){
                     <Input placeholder="Digite o telefone do usuário."/>
                   </FilterBox>    
 
-                  <Button text="Buscar"/>               
+                  <LargeButton text="Buscar"/>               
                 </Filter>
 
             </FilterContainer>   
@@ -73,9 +74,21 @@ export default function UserList(){
                  <ContentTitle>HeadOffice</ContentTitle>
                  <ContentTitle>Perfil</ContentTitle>
                  <ContentTitle>Cargo</ContentTitle>
-                 <ContentTitle></ContentTitle>
+                 <ContentTitle>Detalhe</ContentTitle>
+                
                
               </ContentHeader>
+
+              <ContentResult>
+                <Result>1</Result>
+                <Result>Bruna Andrade</Result>
+                <Result>030.767.235.29</Result>
+                <Result>HeadOffice Central</Result>
+                <Result>Admin</Result>
+                <Result>Administrador</Result>
+                <Button text="Detalhe"/>   
+
+              </ContentResult>
             </Content>
 
           </Container>

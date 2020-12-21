@@ -15,10 +15,12 @@ export const Container = styled.div`
 
 export const Content = styled.div`
     display: flex;
-    flex-direction:column;  
+    align-items:center;
+    justify-content:center; 
+    flex-direction:row;  
     background-color: #f5f5f5;   
-    width:800px;
-    height:500px;
+    width:450px;
+    height:150px;
     border-radius:9px;  
     margin-bottom:10px; 
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);

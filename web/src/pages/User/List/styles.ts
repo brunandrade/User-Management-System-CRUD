@@ -57,16 +57,31 @@ export const ContentHeader = styled.div`
     align-items:center;
     justify-content:space-between;   
     background-color: #415A77;
-    padding:10px;
+    padding:20px;
     width:100%;
     height:40px;
  
-
 `
 
 export const ContentTitle = styled.p`
     color: white;
     font-size:16px;   
     padding:10px;
+`
+
+export const Result = styled.p`
+    color: black;
+    font-size:16px;   
+    padding:10px;
+   
+`
+export const ContentResult = styled.div`
+    display: flex;
+    align-items:center;
+    justify-content:space-between;   
+    padding:20px;
+    width:100%;
+    height:40px;
+ 
 `
 

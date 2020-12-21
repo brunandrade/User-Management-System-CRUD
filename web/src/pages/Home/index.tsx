@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../../components/NavBar'
 import {Container, Content, ContentHeader} from './styles'
+import { FiUsers, FiSave, FiList } from 'react-icons/fi';
 
 export default function Home(){
     
@@ -9,16 +10,19 @@ export default function Home(){
         <NavBar/>
           <Container>
               <Content>
-                  <ContentHeader>
-                   
-                  </ContentHeader>                  
+                    <FiUsers size={34} color="#1B263B"/>   
+                    <h2>Lista de Usuários</h2>                    
+              </Content>    
+
+              <Content>
+                    <FiList size={34} color="#1B263B"/>   
+                    <h2>Lista de HeadOffices</h2>                    
               </Content>
 
               <Content>
-                  <ContentHeader>
-                  
-                  </ContentHeader>                  
-              </Content>
+                    <FiSave size={34} color="#1B263B"/>   
+                    <h2>Adicionar HeadOffice</h2>                    
+              </Content>              
 
           </Container>
           
