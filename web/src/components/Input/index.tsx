@@ -14,7 +14,7 @@ const InputComponent = styled.input`
    border-radius:9px;
    background-color:#EAE6E5;
    margin-bottom:10px;
-   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.12);
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 
    @media (max-width: 618px) {
         width:90%;

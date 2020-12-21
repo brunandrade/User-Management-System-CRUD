@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom'
 import {Container, Content, Header,Body} from './styles'
 
 
-export default function Login(){
+export default function ChangePassword(){
     return(
         <Container>
             <Content>
@@ -24,22 +24,19 @@ export default function Login(){
                     <Input placeholder="Digite seu melhor email."/>
 
                     <Label label="Senha:"/>
-                    <Input placeholder="Digite sua senha."/>                      
+                    <Input placeholder="Digite sua senha."/>  
+
+                    <Label label="Confimre a nova Senha:"/>
+                    <Input placeholder="Digite sua senha."/>                            
                 </Body> 
 
-                <Link to='/Home'>
-                 <Button text="Entrar"/>
+                <Link to='/'>
+                 <Button text="Redefinir Senha"/>
                 </Link>  
                
                 <Link to='/Register'>
                     <LinkButton text="Não possui Cadastro? Clique aqui!"/>  
-                </Link>  
-
-                <Link to='/ChangePassword'>
-                    <LinkButton text="Esqueci minha senha!"/>   
-                </Link>  
-                
-                                 
+                </Link>                       
             </Content>          
         </Container>
     );

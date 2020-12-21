@@ -13,7 +13,7 @@ interface Props{
     border:0;
     cursor: pointer;
     border-radius:9px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     margin-bottom:20px;
     &:hover{
         opacity:0.9;
