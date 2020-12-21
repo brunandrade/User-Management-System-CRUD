@@ -37,8 +37,7 @@ export default function Login(){
 
                 <Link to='/ChangePassword'>
                     <LinkButton text="Esqueci minha senha!"/>   
-                </Link>  
-                
+                </Link>                 
                                  
             </Content>          
         </Container>

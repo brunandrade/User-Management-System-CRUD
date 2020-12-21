@@ -35,9 +35,7 @@ const WhiteTitle = styled.p`
 const TitleComponent: React.FC<Props> = ({title, color})=>{
     return(
       <>
-      {color == true ?  <WhiteTitle>{title}</WhiteTitle>: <Title>{title}</Title>}
-      
-    
+        {color === true ?  <WhiteTitle>{title}</WhiteTitle>: <Title>{title}</Title>}     
       </>
        
     );

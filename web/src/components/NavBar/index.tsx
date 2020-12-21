@@ -23,10 +23,10 @@ import {Nav, NavLink, NavMenu, NavMenuVertical, NavLinkBtn, Bars, Close} from '.
                             Home
                         </NavLink>
                         <NavLink to="/User/List" activeStyle={{opacity:'1'}}>
-                            Lista de Uusários 
+                            Usários 
                         </NavLink>
                         <NavLink to="/HeadOffice/List" activeStyle={{opacity:'1'}}>
-                            Lista de HeadOffices 
+                            HeadOfficers 
                         </NavLink>
                         <NavLink to="/HeadOffice/Create" activeStyle={{opacity:'1'}}>
                             Adicionar HeadOffice 
@@ -47,10 +47,10 @@ import {Nav, NavLink, NavMenu, NavMenuVertical, NavLinkBtn, Bars, Close} from '.
                        Home
                    </NavLink>
                    <NavLink to="/User/List" activeStyle={{opacity:'1'}}>
-                       Lista de Uusários 
+                        Usários 
                    </NavLink>
                    <NavLink to="/HeadOffice/List" activeStyle={{opacity:'1'}}>
-                       Lista de HeadOffices 
+                        HeadOfficers 
                    </NavLink>
                    <NavLink to="/HeadOffice/Create" activeStyle={{opacity:'1'}}>
                        Adicionar HeadOffice 
