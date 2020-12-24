@@ -3,8 +3,7 @@ import NavBar from '../../../components/NavBar'
 import Label from '../../../components/Label'
 import Input from '../../../components/InputWhite'
 import LargeButton from '../../../components/LargeButton'
-import Button from '../../../components/Button'
-import {Container, Filter, FilterContainer, FilterBox, Content, ContentHeader, ContentTitle, ContentResult, Result} from './styles'
+import {Container, Filter, FilterContainer, FilterBox,Table, DetailButton, ContentHeader, ContentTitle, ContentResult, Result} from './styles'
 
 export default function UserList(){
     
@@ -65,32 +64,36 @@ export default function UserList(){
 
             </FilterContainer>   
 
-            <Content>
-              <ContentHeader>
-              
-                 <ContentTitle>Id</ContentTitle>
-                 <ContentTitle>Nome</ContentTitle>
-                 <ContentTitle>CPF</ContentTitle>
-                 <ContentTitle>HeadOffice</ContentTitle>
-                 <ContentTitle>Perfil</ContentTitle>
-                 <ContentTitle>Cargo</ContentTitle>
-                 <ContentTitle>Detalhe</ContentTitle>
-                
-               
-              </ContentHeader>
-
-              <ContentResult>
-                <Result>1</Result>
-                <Result>Bruna Andrade</Result>
-                <Result>030.767.235.29</Result>
-                <Result>HeadOffice Central</Result>
-                <Result>Admin</Result>
-                <Result>Administrador</Result>
-                <Button text="Detalhe"/>   
-
-              </ContentResult>
-            </Content>
-
+            <Table>
+              <ContentHeader>              
+                  <ContentTitle>Id</ContentTitle>
+                  <ContentTitle>Nome</ContentTitle>
+                  <ContentTitle>CPF</ContentTitle>
+                  <ContentTitle>HeadOffice</ContentTitle>
+                  <ContentTitle>Perfil</ContentTitle>
+                  <ContentTitle>Cargo</ContentTitle>
+                  <ContentTitle>Detalhe</ContentTitle>           
+            </ContentHeader>
+                <ContentResult>
+                  <Result>sdfsdfsdfsdfsdf</Result>
+                  <Result>Jill</Result>
+                  <Result>Jill</Result>
+                  <Result>Jill</Result>
+                  <Result>Jill</Result>
+                  <Result>Jill</Result>
+                  <DetailButton>Detalhe</DetailButton>
+                 
+                </ContentResult>
+                <ContentResult>
+                <Result>Jill</Result>
+                  <Result>Jill</Result>
+                  <Result>Jill</Result>
+                  <Result>Jill</Result>
+                  <Result>Jill</Result>
+                  <Result>Jill</Result>
+                  <DetailButton>Detalhe</DetailButton>
+                </ContentResult>
+          </Table>     
           </Container>
         </>      
        

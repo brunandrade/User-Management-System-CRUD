@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from '../../components/NavBar'
-import {Container, Content, ContentHeader} from './styles'
+import {Container, Content} from './styles'
 import { FiUsers, FiSave, FiList } from 'react-icons/fi';
 
 export default function Home(){

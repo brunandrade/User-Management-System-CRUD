@@ -52,36 +52,51 @@ export const Content = styled.div`
     width:100%;
 
 `
-export const ContentHeader = styled.div`
-    display: flex;
-    align-items:center;
-    justify-content:space-between;   
+export const ContentHeader = styled.tr`
     background-color: #415A77;
-    padding:20px;
     width:100%;
     height:40px;
  
 `
 
-export const ContentTitle = styled.p`
+export const ContentTitle = styled.td`
+ 
     color: white;
     font-size:16px;   
     padding:10px;
 `
 
-export const Result = styled.p`
+export const Result = styled.td`
     color: black;
     font-size:16px;   
-    padding:10px;
-   
+    padding:0 10px;
 `
-export const ContentResult = styled.div`
-    display: flex;
-    align-items:center;
-    justify-content:space-between;   
-    padding:20px;
+
+export const Table = styled.table`
+    width:100%;
+`
+export const ContentResult = styled.tr`
     width:100%;
     height:40px;
- 
+    padding:20px;
+   
 `
+
+export const DetailButton = styled.button`
+    align-self:center;
+    width:100px;
+    height:30px;
+    background-color:#E3B23C;
+    color: black;
+    font-size:14px;
+    border:0;
+    cursor: pointer;
+    border-radius:9px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    margin-top:5px;
+    &:hover{
+        opacity:0.9;
+    }
+`
+
 
