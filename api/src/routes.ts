@@ -1,15 +1,16 @@
 import {Router} from 'express';
 import UserController from './app/controllers/UserController'
 import HeadOfficeController from './app/controllers/HeadOfficeController'
+import SessionController from './app/controllers/SessionController'
 import authMiddleware from './app/middlewares/authMiddleware'
 const router = Router();
 
 //User
 router.post('/User/Create', UserController.store)
 
-router.post('/User/Login', UserController.login)
+router.post('/User/Login', SessionController.login)
 
-router.put('/User/ChangePassword', UserController.changePassword)
+router.put('/User/ChangePassword', SessionController.changePassword)
 
 router.put('/User/:Id/Update', authMiddleware, UserController.update)
 
