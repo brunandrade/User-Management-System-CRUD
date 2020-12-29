@@ -89,6 +89,7 @@ class UserController{
         }     
     }
 
+    //TO DO: Criar controller de Session para rotas de sessão
     async login(req : Request, res: Response){
         const repository = getRepository(User);
         const {Email, Password} = req.body;
@@ -199,6 +200,7 @@ class UserController{
     }
   }     
   
+  //TO DO: Criar controller de Session para rotas de sessão
   async changePassword(req : Request, res: Response){
     const repository = getRepository(User);
     const {Email, Password} = req.body
