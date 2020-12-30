@@ -1,6 +1,7 @@
 
 import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToOne, JoinColumn, BeforeInsert, BeforeUpdate} from 'typeorm';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 // import HeadOffice from './HeadOffice'
 // import Profile from './Profile'
 // import Role from './Role'
