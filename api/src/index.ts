@@ -1,13 +1,4 @@
-import "reflect-metadata";
-import express from 'express';
+import app from './server';
 
-import './database/connection';
-import routes from './routes';
-const app = express();
+app.listen(3333);
 
-app.use(express.json());
-app.use(routes);
-
-app.listen(3333)
-
-export default app;

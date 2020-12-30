@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import {isValidCPF, isValidEmail} from '../services/Validator'
 
-import {SendConfirmEmail, SendResendEmail} from '../services/EmailService'
+import {SendConfirmEmail} from '../services/EmailService'
 
 class UserController{
     async store(req : Request, res: Response){

@@ -1,4 +1,3 @@
-
 interface Hello {
     name: string
 }
